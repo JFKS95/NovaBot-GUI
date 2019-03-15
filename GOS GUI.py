@@ -1,40 +1,91 @@
 from tkinter import *
 
 root = Tk()
-#Creating text as labels
-theLabel = Label(root, text="Welcome to the Galaxy Observatory System")
-theLabel.pack()
-#Organising the layout
-topframe = Frame(root)
-topframe.pack(side=TOP)
-bottomframe = Frame(root)
-bottomframe.pack(side=BOTTOM)
-#Creating button widgets
-button1 = Button(topframe, text='Button 1', fg='red')
-button2 = Button(topframe, text='Button 2', fg='blue')
-button3 = Button(topframe, text='Button 3', fg='green')
-#Displaying buttons
-button1.pack(side=LEFT)
-button2.pack(side=LEFT)
-button3.pack(side=LEFT)
-
-#Text Entry
-label_1 = Label(bottomframe, text='Name')
-label_2 = Label(bottomframe, text='Password')
-entry_1 = Entry(root)
+#Setting Window Properties
+root.geometry('1024x576') #Sets root (GUI) size
+root.configure(background='grey')
+root.title('Galaxy Observatory System (GOS)')
+root.grid_columnconfigure(2, minsize=200)
+root.grid_columnconfigure(4, minsize=200)
+root.grid_columnconfigure(6, minsize=200)
+root.grid_rowconfigure(0, minsize=40)
+root.grid_rowconfigure(1, minsize=40)
+root.grid_rowconfigure(2, minsize=40)
+root.grid_rowconfigure(3, minsize=40)
+root.grid_rowconfigure(4, minsize=40)
+root.grid_rowconfigure(5, minsize=40)
+root.grid_rowconfigure(6, minsize=40)
+root.grid_rowconfigure(7, minsize=40)
+root.grid_rowconfigure(8, minsize=40)
+#Mission Info Labels
+label_1 = Label(root, text="Mission Information Panel", bg='grey', font='bold')
+label_2 = Label(root, text="Progress", bg='grey')
+label_3 = Label(root, text="Mission Phase", bg='grey')
+label_4 = Label(root, text="NOVA Bot Speed", bg='grey')
+label_5 = Label(root, text="Battery", bg='grey')
+label_6 = Label(root, text="Signal", bg='grey')
+label_7 = Label(root, text="Audio Recording", bg='grey')
+#Control Panel Labels
+label_8 = Label(root, text="Control Panel", bg='grey', font='bold')
+label_9 = Label(root, text="Control Mode", bg='grey')
+label_10 = Label(root, text="Mission Phase", bg='grey')
+#Tactical Panel Lables
+label_11 = Label(root, text="Tactical Panel", bg='grey', font='bold')
+label_12 = Label(root, text="Error Code", bg='grey')
+label_13 = Label(root, text="Shutdown Zone", bg='grey')
+#Replace these entries with mission data
 entry_2 = Entry(root)
-#Displaying the Entries
-label_1.pack(side=LEFT)
-entry_1.pack(side=BOTTOM)
-label_2.pack(side=LEFT)
-entry_2.pack(side=BOTTOM)
-
-#Binding Functions to a layout.
+entry_3 = Entry(root)
+entry_4 = Entry(root)
+entry_5 = Entry(root)
+entry_6 = Entry(root)
+entry_7 = Entry(root)
+entry_9 = Entry(root)
+entry_10 = Entry(root)
+entry_12 = Entry(root)
+entry_13 = Entry(root)
+#Control Panel Buttons
+button_1 = Button(root, text="RTB", bg="Yellow", fg="Black", height='2', width='7')
+button_2 = Button(root, text="Reset", bg="Orange", fg="Black", height='2', width='7')
+button_3 = Button(root, text="Shutdown", bg="Red", fg="White", height='2', width='10')
+#Binding Commands to Buttons
+def RTB(event):
+    print("NOVA Bot Returning to Base") #Replace with the RTB Command
+button_1.bind("<Button-1>", RTB)
+def Reset(event):
+    print("NOVA Bot Reset") #Replace with the RESET Command
+button_2.bind("<Button-1>", Reset)
 def Shutdown(event):
-    print("NOVA Bot Shutdown")
-button4 = Button(bottomframe, text='Shutdown', fg='indigo')
-button4.bind("<Button-1>", Shutdown) #Binds button click to function
-button4.pack(side=BOTTOM)
+    print("NOVA Bot Shutdown") #Replace with the SHUTDOWN Command
+button_3.bind("<Button-1>", Shutdown)
+#Grid layout - Labels
+label_1.grid(row=0, columnspan=2)
+label_2.grid(row=1, sticky=E)
+label_3.grid(row=2, sticky=E)
+label_4.grid(row=3, sticky=E)
+label_5.grid(row=4, sticky=E) #Sticky=E = align east (right)
+label_6.grid(row=5, sticky=E)
+label_7.grid(row=6, sticky=E)
+label_8.grid(row=0, column=2, columnspan=3)
+label_9.grid(row=1, column=2, sticky=E)
+label_10.grid(row=2, column=2, sticky=E)
+label_11.grid(row=0, column=4, columnspan=5)
+label_12.grid(row=1, column=4, sticky=E)
+label_13.grid(row=2, column=4, sticky=E)
+#Grid layout - Data to display
+entry_2.grid(row=1, column=1)
+entry_3.grid(row=2, column=1)
+entry_4.grid(row=3, column=1)
+entry_5.grid(row=4, column=1)
+entry_6.grid(row=5, column=1)
+entry_7.grid(row=6, column=1)
+entry_9.grid(row=1, column=3)
+entry_10.grid(row=2, column=3)
+entry_12.grid(row=1, column=5, sticky=E)
+entry_13.grid(row=2, column=5, sticky=E)
+#Grid layout - Buttons
+button_1.grid(row=4, column=3, sticky=W)
+button_2.grid(row=4, column=3, sticky=E)
+button_3.grid(row=6, column=3)
 
-
-root.mainloop() #keeps GUI running
+root.mainloop()
